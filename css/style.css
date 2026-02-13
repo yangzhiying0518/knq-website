@@ -359,10 +359,12 @@ body::before {
 
 /* Marquee clip animations (2 speeds, opposing directions) */
 .marquee-clips-left {
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
 }
 .marquee-clips-right {
-  animation: marquee-reverse 40s linear infinite;
+  animation: marquee-reverse 55s linear infinite;
+  will-change: transform;
 }
 
 @keyframes marquee-reverse {

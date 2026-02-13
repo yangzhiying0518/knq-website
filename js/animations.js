@@ -114,8 +114,11 @@ export function initAnimations(gsap, ScrollTrigger) {
     const demoOutput = document.getElementById('demo-output');
     const demoStats = document.getElementById('demo-stats');
     const demoPromptText = document.getElementById('demo-prompt-text');
+    const demoPromptCursor = document.getElementById('demo-prompt-cursor');
     const demoGoBtn = document.getElementById('demo-go-btn');
-    const marqueeTracks = editingDemo.querySelectorAll('.marquee-paused');
+    const marqueeRow1 = editingDemo.querySelector('.marquee-clips-left');
+    const marqueeRow2 = editingDemo.querySelector('.marquee-clips-right');
+    const marqueeContainers = editingDemo.querySelectorAll('.marquee-container');
 
     const promptString = 'Highlight all key moments from this match';
     let demoPlayed = false;
@@ -126,10 +129,10 @@ export function initAnimations(gsap, ScrollTrigger) {
 
       const tl = gsap.timeline();
 
-      // Prompt input fades in
-      tl.to(demoPrompt, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+      // Step 1: Prompt input fades in with slide-up
+      tl.to(demoPrompt, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
 
-      // Typing effect
+      // Step 2: Typing effect at natural pace (45ms/char)
       tl.call(() => {
         let i = 0;
         const timer = setInterval(() => {
@@ -137,19 +140,35 @@ export function initAnimations(gsap, ScrollTrigger) {
           i++;
           if (i >= promptString.length) {
             clearInterval(timer);
-            gsap.to(demoGoBtn, { opacity: 1, duration: 0.25 });
+            // Hide cursor, show go button with smooth transition
+            if (demoPromptCursor) demoPromptCursor.classList.add('hidden');
+            gsap.to(demoGoBtn, { opacity: 1, duration: 0.35, ease: 'power2.out' });
           }
-        }, 30);
-      }, null, '+=0.3');
+        }, 45);
+      }, null, '+=0.4');
 
-      // Marquee rows fade in and start scrolling
-      tl.to(demoOutput, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '+=1.5');
-      tl.call(() => {
-        marqueeTracks.forEach((track) => track.classList.remove('marquee-paused'));
-      });
+      // Step 3: Brief pause after typing completes to create "processing" rhythm
+      // Typing takes ~1.8s (40 chars × 45ms), so +=2.4s ensures a 0.6s gap after typing ends
+      tl.to(demoOutput, { opacity: 1, duration: 0.4, ease: 'power2.out' }, '+=2.4');
 
-      // Stats
-      tl.to(demoStats, { opacity: 1, duration: 0.3 }, '+=0.3');
+      // Step 4: Row 1 slides up and starts scrolling
+      tl.fromTo(marqueeContainers[0],
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+        '-=0.2'
+      );
+      tl.call(() => { if (marqueeRow1) marqueeRow1.classList.remove('marquee-paused'); });
+
+      // Step 5: Row 2 slides up staggered (0.25s later)
+      tl.fromTo(marqueeContainers[1],
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+        '-=0.35'
+      );
+      tl.call(() => { if (marqueeRow2) marqueeRow2.classList.remove('marquee-paused'); });
+
+      // Step 6: Stats fade in
+      tl.to(demoStats, { opacity: 1, duration: 0.4, ease: 'power2.out' }, '+=0.4');
     }
 
     ScrollTrigger.create({
