@@ -196,10 +196,16 @@ function initCommentaryPersonas() {
 
   // Auto-cycle
   function startAutoCycle() {
+    clearInterval(autoCycleInterval);
     autoCycleInterval = setInterval(() => {
       const next = (activeIndex + 1) % personas.length;
       setActivePersona(next);
     }, 5000);
+  }
+
+  function stopAutoCycle() {
+    clearInterval(autoCycleInterval);
+    autoCycleInterval = null;
   }
 
   // Initial state
@@ -209,6 +215,22 @@ function initCommentaryPersonas() {
   autoCycleTimer = setTimeout(() => {
     startAutoCycle();
   }, 8000);
+
+  // Pause auto-cycle when section is not visible (prevents layout shift)
+  const commentarySection = document.getElementById('commentary');
+  if (commentarySection) {
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!userInteracted && !autoCycleInterval) startAutoCycle();
+        } else {
+          stopAutoCycle();
+        }
+      },
+      { threshold: 0 }
+    );
+    visibilityObserver.observe(commentarySection);
+  }
 }
 
 // ========================================================================
