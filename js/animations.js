@@ -140,4 +140,63 @@ export function initAnimations(gsap, ScrollTrigger) {
       },
     });
   });
+
+  // ========================================================================
+  // AI Editing Demo — lightweight scroll-triggered animation
+  // ========================================================================
+
+  const editingDemo = document.getElementById('editing-demo');
+  if (editingDemo) {
+    const demoPrompt = document.getElementById('demo-prompt');
+    const demoOutput = document.getElementById('demo-output');
+    const demoStats = document.getElementById('demo-stats');
+    const demoPromptText = document.getElementById('demo-prompt-text');
+    const demoGoBtn = document.getElementById('demo-go-btn');
+    const demoClips = document.querySelectorAll('.demo-clip');
+
+    const promptString = 'Best goals and key saves from this match';
+    let demoPlayed = false;
+
+    function playDemoSequence() {
+      if (demoPlayed) return;
+      demoPlayed = true;
+
+      const tl = gsap.timeline();
+
+      // Prompt input fades in
+      tl.to(demoPrompt, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+
+      // Typing effect
+      tl.call(() => {
+        let i = 0;
+        const timer = setInterval(() => {
+          demoPromptText.textContent = promptString.slice(0, i + 1);
+          i++;
+          if (i >= promptString.length) {
+            clearInterval(timer);
+            gsap.to(demoGoBtn, { opacity: 1, duration: 0.25 });
+          }
+        }, 30);
+      }, null, '+=0.3');
+
+      // Clips appear (wait for typing to finish)
+      tl.to(demoOutput, { opacity: 1, duration: 0.3 }, '+=1.5');
+      tl.to(demoClips, {
+        opacity: 1,
+        y: 0,
+        duration: 0.45,
+        stagger: 0.1,
+        ease: 'back.out(1.2)',
+      }, '-=0.1');
+
+      // Stats
+      tl.to(demoStats, { opacity: 1, duration: 0.3 }, '+=0.2');
+    }
+
+    ScrollTrigger.create({
+      trigger: editingDemo,
+      start: 'top 75%',
+      onEnter: playDemoSequence,
+    });
+  }
 }

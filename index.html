@@ -140,9 +140,9 @@
             <div class="text-3xl md:text-4xl font-extrabold text-accent" data-count="50" data-suffix="+">0</div>
             <div class="text-sm text-text-muted mt-1">Languages</div>
           </div>
-          <div class="border-x border-border/50">
-            <div class="text-3xl md:text-4xl font-extrabold text-accent">∞</div>
-            <div class="text-sm text-text-muted mt-1">Voice Styles</div>
+          <div class="border-x border-border/50 px-6">
+            <div class="text-3xl md:text-4xl font-extrabold text-accent tracking-tight">Real-Time</div>
+            <div class="text-sm text-text-muted mt-1">AI Processing</div>
           </div>
           <div>
             <div class="text-3xl md:text-4xl font-extrabold text-accent" data-count="10" data-suffix="+">0</div>
@@ -512,30 +512,73 @@
           <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Music Licensing</span></div>
         </div>
 
-        <!-- Workflow Diagram -->
-        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0" data-animate="fade-up">
-          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
-            <div class="text-accent text-sm font-semibold">Live Feed</div>
-            <div class="text-text-muted text-xs mt-1">Raw broadcast</div>
+        <!-- AI Editing Demo (lightweight) -->
+        <div id="editing-demo" class="max-w-3xl mx-auto" data-animate="fade-up">
+
+          <!-- Prompt Input -->
+          <div id="demo-prompt" class="opacity-0">
+            <div class="flex items-center bg-surface border border-border rounded-2xl px-5 py-4 gap-3 max-w-xl mx-auto shadow-lg shadow-black/20">
+              <svg class="w-5 h-5 text-text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span id="demo-prompt-text" class="text-text-secondary text-sm flex-1 min-h-[20px]"></span>
+              <span id="demo-prompt-cursor" class="typing-cursor"></span>
+              <button class="bg-accent text-bg px-4 py-1.5 rounded-xl text-xs font-bold shrink-0 opacity-0 transition-opacity" id="demo-go-btn">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
-          <svg class="hidden md:block w-12 h-6 text-accent" viewBox="0 0 48 24"><path class="workflow-arrow" d="M0 12 H40 M34 6 L40 12 L34 18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-          <div class="md:hidden text-accent text-2xl">↓</div>
-          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
-            <div class="text-accent text-sm font-semibold">AI Engine</div>
-            <div class="text-text-muted text-xs mt-1">Event detection</div>
+
+          <!-- Output Clips -->
+          <div id="demo-output" class="mt-8 opacity-0">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+              <div class="demo-clip opacity-0 translate-y-6">
+                <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gradient-to-br from-slate-700/60 via-blue-900/30 to-slate-800/60 border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
+                  <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded-md text-[11px] text-white/90 font-medium">23'</div>
+                  <div class="absolute bottom-3 left-3">
+                    <div class="text-white text-xs font-semibold">Goal — Long Range</div>
+                    <div class="text-white/50 text-[10px] mt-0.5">16:9 · 12s</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-clip opacity-0 translate-y-6">
+                <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gradient-to-br from-slate-700/60 via-emerald-900/30 to-slate-800/60 border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
+                  <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded-md text-[11px] text-white/90 font-medium">45+2'</div>
+                  <div class="absolute bottom-3 left-3">
+                    <div class="text-white text-xs font-semibold">Save — Penalty Stop</div>
+                    <div class="text-white/50 text-[10px] mt-0.5">9:16 · 8s</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-clip opacity-0 translate-y-6">
+                <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gradient-to-br from-slate-700/60 via-violet-900/30 to-slate-800/60 border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
+                  <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded-md text-[11px] text-white/90 font-medium">67'</div>
+                  <div class="absolute bottom-3 left-3">
+                    <div class="text-white text-xs font-semibold">Goal — Header</div>
+                    <div class="text-white/50 text-[10px] mt-0.5">1:1 · 15s</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-clip opacity-0 translate-y-6">
+                <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gradient-to-br from-slate-700/60 via-orange-900/30 to-slate-800/60 border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
+                  <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded-md text-[11px] text-white/90 font-medium">90+3'</div>
+                  <div class="absolute bottom-3 left-3">
+                    <div class="text-white text-xs font-semibold">Goal — Stoppage Time</div>
+                    <div class="text-white/50 text-[10px] mt-0.5">16:9 · 22s</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <svg class="hidden md:block w-12 h-6 text-accent" viewBox="0 0 48 24"><path class="workflow-arrow" d="M0 12 H40 M34 6 L40 12 L34 18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-          <div class="md:hidden text-accent text-2xl">↓</div>
-          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
-            <div class="text-accent text-sm font-semibold">Auto Edit</div>
-            <div class="text-text-muted text-xs mt-1">Context-aware cuts</div>
+
+          <!-- Minimal Stats -->
+          <div id="demo-stats" class="mt-6 text-center opacity-0">
+            <span class="text-text-muted text-xs">4 highlights · 3 formats · <span class="text-accent font-medium">8.2s</span></span>
           </div>
-          <svg class="hidden md:block w-12 h-6 text-accent" viewBox="0 0 48 24"><path class="workflow-arrow" d="M0 12 H40 M34 6 L40 12 L34 18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-          <div class="md:hidden text-accent text-2xl">↓</div>
-          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
-            <div class="text-accent text-sm font-semibold">Distribution</div>
-            <div class="text-text-muted text-xs mt-1">Multi-platform</div>
-          </div>
+
         </div>
       </div>
     </section>

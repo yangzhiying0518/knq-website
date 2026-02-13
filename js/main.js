@@ -4,7 +4,6 @@ import { initPersonas } from './personas.js';
 import { initModal } from './modal.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 gsap.registerPlugin(ScrollTrigger);
 
 // ========================================================================
