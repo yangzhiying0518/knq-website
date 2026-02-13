@@ -115,7 +115,7 @@ export function initAnimations(gsap, ScrollTrigger) {
     const demoStats = document.getElementById('demo-stats');
     const demoPromptText = document.getElementById('demo-prompt-text');
     const demoGoBtn = document.getElementById('demo-go-btn');
-    const demoClips = document.querySelectorAll('.demo-clip');
+    const marqueeTracks = editingDemo.querySelectorAll('.marquee-paused');
 
     const promptString = 'Highlight all key moments from this match';
     let demoPlayed = false;
@@ -142,18 +142,14 @@ export function initAnimations(gsap, ScrollTrigger) {
         }, 30);
       }, null, '+=0.3');
 
-      // Clips appear (wait for typing to finish)
-      tl.to(demoOutput, { opacity: 1, duration: 0.3 }, '+=1.5');
-      tl.to(demoClips, {
-        opacity: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.1,
-        ease: 'back.out(1.2)',
-      }, '-=0.1');
+      // Marquee rows fade in and start scrolling
+      tl.to(demoOutput, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '+=1.5');
+      tl.call(() => {
+        marqueeTracks.forEach((track) => track.classList.remove('marquee-paused'));
+      });
 
       // Stats
-      tl.to(demoStats, { opacity: 1, duration: 0.3 }, '+=0.2');
+      tl.to(demoStats, { opacity: 1, duration: 0.3 }, '+=0.3');
     }
 
     ScrollTrigger.create({
