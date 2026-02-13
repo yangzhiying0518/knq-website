@@ -134,7 +134,7 @@ export function initAnimations(gsap, ScrollTrigger) {
     const demoGoBtn = document.getElementById('demo-go-btn');
     const demoClips = document.querySelectorAll('.demo-clip');
 
-    const promptString = 'Best goals and key saves from this match';
+    const promptString = 'Highlight all key moments from this match';
     let demoPlayed = false;
 
     function playDemoSequence() {
