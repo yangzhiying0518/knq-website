@@ -87,23 +87,6 @@ export function initAnimations(gsap, ScrollTrigger) {
   if (heroTerminal) heroTimeline.from(heroTerminal, { x: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
   if (heroStats) heroTimeline.from(heroStats, { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
 
-  // Parameter bars initial animation
-  const paramBars = document.querySelectorAll('.param-bar-fill');
-  paramBars.forEach((bar) => {
-    const targetWidth = bar.style.width;
-    bar.style.width = '0%';
-    gsap.to(bar, {
-      width: targetWidth,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: bar.closest('section'),
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    });
-  });
-
   // ========================================================================
   // AI Editing Demo — lightweight scroll-triggered animation
   // ========================================================================
