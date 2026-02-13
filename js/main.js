@@ -150,11 +150,29 @@ function initPageLoad() {
 
 function initCommentaryVideo() {
   const video = document.getElementById('commentary-video');
+  const unmuteBtn = document.getElementById('commentary-unmute');
   if (!video) return;
 
+  let userUnmuted = false;
+
+  // Unmute on button click (requires user gesture for browser policy)
+  if (unmuteBtn) {
+    unmuteBtn.addEventListener('click', () => {
+      video.muted = false;
+      userUnmuted = true;
+      unmuteBtn.style.opacity = '0';
+      unmuteBtn.style.pointerEvents = 'none';
+      setTimeout(() => unmuteBtn.remove(), 300);
+      // Ensure video is playing after unmute
+      video.play().catch(() => {});
+    });
+  }
+
+  // Scroll-aware play/pause with sound
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
+        if (userUnmuted) video.muted = false;
         video.play().catch(() => {});
       } else {
         video.pause();
