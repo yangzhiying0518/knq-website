@@ -145,6 +145,27 @@ function initPageLoad() {
 }
 
 // ========================================================================
+// Commentary video: scroll-aware auto-play/pause
+// ========================================================================
+
+function initCommentaryVideo() {
+  const video = document.getElementById('commentary-video');
+  if (!video) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    },
+    { threshold: 0.25 }
+  );
+  observer.observe(video);
+}
+
+// ========================================================================
 // Initialize everything
 // ========================================================================
 
@@ -153,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initCounters();
   initWorldMap();
+  initCommentaryVideo();
   initAnimations(gsap, ScrollTrigger);
   initPersonas();
   initModal();
