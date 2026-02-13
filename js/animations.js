@@ -87,26 +87,6 @@ export function initAnimations(gsap, ScrollTrigger) {
     });
   });
 
-  // Workflow arrow dash animation
-  const arrows = document.querySelectorAll('.workflow-arrow');
-  arrows.forEach((arrow) => {
-    const length = arrow.getTotalLength?.() || 100;
-    gsap.fromTo(
-      arrow,
-      { strokeDasharray: length, strokeDashoffset: length },
-      {
-        strokeDashoffset: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: arrow.closest('section'),
-          start: 'top 75%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-  });
-
   // Hero animations (not scroll-triggered, plays on load)
   const heroTimeline = gsap.timeline({ delay: 0.2 });
 

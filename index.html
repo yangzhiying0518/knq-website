@@ -737,33 +737,8 @@
           </div>
         </div>
 
-        <!-- SVG World Map with dots -->
-        <div class="relative max-w-4xl mx-auto mb-12" data-animate="fade-up">
-          <svg viewBox="0 0 800 400" class="w-full h-auto opacity-20">
-            <!-- Simplified world map continent outlines -->
-            <!-- North America -->
-            <path d="M120 80 L180 60 L220 80 L240 120 L220 160 L200 180 L160 200 L120 180 L100 140 L110 100 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-            <!-- South America -->
-            <path d="M180 220 L200 200 L220 220 L230 260 L220 300 L200 340 L180 320 L170 280 L175 240 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-            <!-- Europe -->
-            <path d="M360 60 L400 50 L420 70 L430 100 L420 120 L400 130 L380 120 L360 100 L355 80 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-            <!-- Africa -->
-            <path d="M380 140 L420 130 L440 160 L450 200 L440 260 L420 300 L400 310 L380 280 L370 220 L375 170 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-            <!-- Asia -->
-            <path d="M450 50 L520 40 L580 50 L640 80 L660 120 L650 160 L620 180 L560 190 L500 170 L460 140 L440 100 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-            <!-- Australia -->
-            <path d="M600 260 L650 250 L680 270 L680 300 L660 320 L620 310 L600 290 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-          </svg>
-          <!-- Glowing dots at key regions -->
-          <div class="map-dot large" style="top: 20%; left: 20%;"></div>  <!-- North America -->
-          <div class="map-dot" style="top: 60%; left: 25%;"></div>  <!-- South America -->
-          <div class="map-dot large" style="top: 18%; left: 50%;"></div>  <!-- Europe -->
-          <div class="map-dot" style="top: 50%; left: 52%;"></div>  <!-- Africa -->
-          <div class="map-dot large" style="top: 22%; left: 72%;"></div>  <!-- East Asia -->
-          <div class="map-dot" style="top: 35%; left: 62%;"></div>  <!-- South Asia -->
-          <div class="map-dot" style="top: 30%; left: 55%;"></div>  <!-- Middle East -->
-          <div class="map-dot" style="top: 70%; left: 82%;"></div>  <!-- Oceania -->
-        </div>
+        <!-- Dot-Matrix World Map -->
+        <div id="world-map-container" class="max-w-5xl mx-auto mb-12" data-animate="fade-up"></div>
 
         <!-- Compliance Region Tags -->
         <div class="flex flex-wrap justify-center gap-3" data-animate="fade-up">

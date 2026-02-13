@@ -2,6 +2,7 @@
 import { initAnimations } from './animations.js';
 import { initPersonas } from './personas.js';
 import { initModal } from './modal.js';
+import { initWorldMap } from './worldmap.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -151,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageLoad();
   initNavigation();
   initCounters();
+  initWorldMap();
   initAnimations(gsap, ScrollTrigger);
   initPersonas();
   initModal();
