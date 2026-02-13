@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KNQ — AI Sports Media Infrastructure</title>
+  <meta name="description" content="KNQ builds the AI infrastructure behind next-generation sports media. Real-time commentary, intelligent highlights, and structured game understanding." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KNQ — AI Sports Media Infrastructure" />
+  <meta property="og:description" content="Real-time AI commentary, intelligent highlights, and structured game understanding. Powering the next era of sports." />
+  <meta property="og:url" content="https://knqtech.com" />
+
+  <!-- Favicon (inline data URI to avoid Vite CSS analysis path resolution) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='200 330 1300 680' fill='none'%3E%3Cpath fill='%2305E6FF' d='M1249.63 833.571L1392.98 756.882C1411.67 746.881 1434.21 760.761 1433.68 781.956L1429.74 942.288C1429.22 963.483 1406.03 976.239 1387.85 965.331L1248.45 881.687C1230.02 870.632 1230.68 843.707 1249.63 833.571Z'/%3E%3Cpath fill='%230516FF' fill-rule='evenodd' d='M647.973 956.617V960.212H464.966L390.27 727.225H380.31V960.212H215.009V342.001H380.31V600.845H390.27L479.905 342.001H664.849L787.406 638.731H795.429V342.001H947.727V578.617C940.563 579.095 933.333 579.338 926.044 579.338C904.998 579.338 884.434 577.31 864.546 573.442C861.901 580.775 859.555 588.2 857.513 595.696C879.644 600.165 902.565 602.513 926.044 602.513C933.329 602.513 940.558 602.287 947.727 601.842V960.212H784.363L655.996 672.469H647.973V956.617Z'/%3E%3Cpath fill='%2305E6FF' fill-rule='evenodd' d='M1240.5 392.657C1191.14 515.539 1068.95 602.509 926.041 602.509C902.563 602.509 879.644 600.162 857.516 595.693C834.05 681.84 850.557 777.556 910.743 853.724L913.394 857.078C935.045 884.48 960.61 907.149 988.706 924.914C993.389 746.073 1142.79 602.506 1326.41 602.506C1368.89 602.506 1409.54 610.191 1446.99 624.22C1438.51 579.141 1419.19 535.284 1388.54 496.498L1385.89 493.143C1347.26 444.263 1296.18 410.435 1240.5 392.657Z'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="page-loading">
+
+  <!-- ====================================================================
+       NAVIGATION
+       ==================================================================== -->
+  <header id="site-header" class="fixed top-0 left-0 w-full h-[72px] z-[1000] flex items-center transition-all duration-300">
+    <nav class="w-full max-w-[var(--container-max)] mx-auto px-6 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2" aria-label="KNQ Home">
+        <svg class="h-7 w-auto" viewBox="200 330 1300 680" fill="none" aria-hidden="true"><path fill="#FFF" d="M1249.63 833.571L1392.98 756.882C1411.67 746.881 1434.21 760.761 1433.68 781.956L1429.74 942.288C1429.22 963.483 1406.03 976.239 1387.85 965.331L1248.45 881.687C1230.02 870.632 1230.68 843.707 1249.63 833.571Z"/><path fill="#FFF" fill-rule="evenodd" d="M647.973 956.617V960.212H464.966L390.27 727.225H380.31V960.212H215.009V342.001H380.31V600.845H390.27L479.905 342.001H664.849L787.406 638.731H795.429V342.001H947.727V578.617a269 269 0 01-21.683.721c-21.046 0-41.61-2.028-61.498-5.896a271 271 0 00-7.033 22.254c22.131 4.469 45.052 6.817 68.531 6.817 7.285 0 14.514-.226 21.683-.671V960.212H784.363L655.996 672.469H647.973V956.617Z"/><path fill="#FFF" fill-rule="evenodd" d="M1240.5 392.657C1191.14 515.539 1068.95 602.509 926.041 602.509c-23.478 0-46.397-2.347-68.525-6.816-23.466 86.147-6.959 181.863 53.227 258.031l2.651 3.354c21.651 27.402 47.216 50.071 75.312 67.836 4.683-178.841 154.083-322.408 337.704-322.408 42.48 0 83.13 7.685 120.58 21.714-8.48-45.079-27.8-88.936-58.45-127.722l-2.65-3.355c-38.63-48.88-89.71-82.708-145.39-100.486z"/></svg>
+        <span class="text-lg font-bold text-text-primary">KNQ</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#commentary" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 relative pb-1">Commentary</a>
+        <a href="#editing" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 relative pb-1">Editing</a>
+        <a href="#global" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 relative pb-1">Global</a>
+        <a href="#trusted" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 relative pb-1">Trusted By</a>
+        <a href="#about" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 relative pb-1">About</a>
+      </div>
+
+      <!-- CTA Button -->
+      <a href="#" data-modal="contact" class="hidden md:inline-flex btn-primary text-sm !py-2.5 !px-5">Contact Us</a>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobile-menu-toggle" class="md:hidden p-2 text-text-secondary hover:text-text-primary" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </nav>
+
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[1001] bg-bg/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8">
+    <button id="mobile-menu-close" class="absolute top-5 right-5 p-2 text-text-secondary hover:text-text-primary" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#commentary" class="mobile-nav-link text-xl font-semibold text-text-secondary hover:text-text-primary transition-colors">Commentary</a>
+    <a href="#editing" class="mobile-nav-link text-xl font-semibold text-text-secondary hover:text-text-primary transition-colors">Editing</a>
+    <a href="#global" class="mobile-nav-link text-xl font-semibold text-text-secondary hover:text-text-primary transition-colors">Global</a>
+    <a href="#trusted" class="mobile-nav-link text-xl font-semibold text-text-secondary hover:text-text-primary transition-colors">Trusted By</a>
+    <a href="#about" class="mobile-nav-link text-xl font-semibold text-text-secondary hover:text-text-primary transition-colors">About</a>
+    <a href="#" data-modal="contact" class="btn-primary text-lg mt-4">Contact Us</a>
+  </div>
+
+  <main>
+
+    <!-- ==================================================================
+         HERO SECTION
+         ================================================================== -->
+    <section id="hero" class="hero-bg relative min-h-screen flex items-center pt-[72px] overflow-hidden">
+      <!-- Floating shapes -->
+      <div class="hero-shape w-[300px] h-[300px] bg-primary animate-float-1 top-[20%] left-[10%]"></div>
+      <div class="hero-shape w-[200px] h-[200px] bg-accent animate-float-2 top-[60%] right-[15%]"></div>
+      <div class="hero-shape w-[150px] h-[150px] bg-primary animate-float-3 bottom-[10%] left-[40%]"></div>
+
+      <div class="w-full max-w-[var(--container-max)] mx-auto px-6 py-16 lg:py-0">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <!-- Left: Text Content (55%) -->
+          <div class="lg:w-[55%] space-y-6">
+            <span class="section-label">AI Sports Infrastructure</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] text-text-primary">
+              AI Powering the<br />Next Era of Sports
+            </h1>
+            <p class="hero-subheadline text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed">
+              Multimodal AI engine powering sports content, business and growth. Real-time commentary, intelligent highlights, and structured game understanding.
+            </p>
+            <div class="hero-ctas flex flex-wrap gap-4 pt-2">
+              <a href="#" data-modal="contact" data-prefill="I'd like to request a private demo." class="btn-primary">Request Private Demo</a>
+              <a href="#" data-modal="contact" data-prefill="I'm interested in partnership opportunities." class="btn-outline">Explore Partnership</a>
+            </div>
+          </div>
+
+          <!-- Right: AI Terminal Preview (45%) -->
+          <div class="hero-terminal lg:w-[45%] w-full">
+            <div class="bg-surface border border-border rounded-2xl overflow-hidden shadow-2xl">
+              <!-- Terminal header -->
+              <div class="flex items-center gap-2 px-4 py-3 border-b border-border">
+                <span class="terminal-dot bg-[#FF5F57]"></span>
+                <span class="terminal-dot bg-[#FEBC2E]"></span>
+                <span class="terminal-dot bg-[#28C840]"></span>
+                <span class="text-text-muted text-xs ml-2 font-mono">knq-ai-commentary</span>
+              </div>
+              <!-- Terminal body -->
+              <div class="p-5 space-y-4 font-mono text-sm">
+                <!-- Event line -->
+                <div class="flex items-center gap-2">
+                  <span class="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-dot"></span>
+                  <span class="text-accent font-bold">LIVE</span>
+                  <span class="text-text-muted">|</span>
+                  <span class="text-text-primary font-semibold">90+3' | GOAL</span>
+                </div>
+                <!-- Persona badge -->
+                <div class="flex items-center gap-2">
+                  <span class="text-text-muted text-xs">Persona:</span>
+                  <span id="terminal-badge" class="bg-primary/20 text-accent text-xs px-2 py-0.5 rounded-full font-semibold">Professional Analyst</span>
+                </div>
+                <!-- Commentary output -->
+                <div class="text-text-secondary leading-relaxed min-h-[48px]">
+                  <span id="terminal-text"></span><span class="typing-cursor"></span>
+                </div>
+                <!-- Cycle dots -->
+                <div class="flex items-center justify-center gap-2 pt-2">
+                  <span class="terminal-cycle-dot w-2 h-2 rounded-full bg-accent transition-colors"></span>
+                  <span class="terminal-cycle-dot w-2 h-2 rounded-full bg-border transition-colors"></span>
+                  <span class="terminal-cycle-dot w-2 h-2 rounded-full bg-border transition-colors"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="hero-stats grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-border/50 max-w-2xl mx-auto text-center lg:max-w-3xl">
+          <div>
+            <div class="text-3xl md:text-4xl font-extrabold text-accent" data-count="50" data-suffix="+">0</div>
+            <div class="text-sm text-text-muted mt-1">Languages</div>
+          </div>
+          <div class="border-x border-border/50">
+            <div class="text-3xl md:text-4xl font-extrabold text-accent" data-count="6" data-suffix="">0</div>
+            <div class="text-sm text-text-muted mt-1">Personas</div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-4xl font-extrabold text-accent" data-count="10" data-suffix="+">0</div>
+            <div class="text-sm text-text-muted mt-1">Platforms</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         CAPABILITY STRIP
+         ================================================================== -->
+    <div class="section-divider"></div>
+    <div class="bg-surface/30 border-y border-border/30 overflow-x-auto">
+      <div class="max-w-[var(--container-max)] mx-auto px-6 flex items-center gap-8 py-4 min-w-max">
+        <a href="#commentary" class="cap-link text-sm font-semibold text-text-muted hover:text-accent transition-colors whitespace-nowrap">AI Commentary</a>
+        <span class="text-border">|</span>
+        <a href="#editing" class="cap-link text-sm font-semibold text-text-muted hover:text-accent transition-colors whitespace-nowrap">AI Editing</a>
+        <span class="text-border">|</span>
+        <a href="#global" class="cap-link text-sm font-semibold text-text-muted hover:text-accent transition-colors whitespace-nowrap">Global Adaptation</a>
+        <span class="text-border">|</span>
+        <a href="#platform" class="cap-link text-sm font-semibold text-text-muted hover:text-accent transition-colors whitespace-nowrap">Game Understanding</a>
+        <span class="text-border">|</span>
+        <a href="#trusted" class="cap-link text-sm font-semibold text-text-muted hover:text-accent transition-colors whitespace-nowrap">Commercial Analytics</a>
+      </div>
+    </div>
+
+    <!-- ==================================================================
+         PROBLEM / CHALLENGE SECTION
+         ================================================================== -->
+    <section id="problem" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <div class="text-center mb-16" data-animate="fade-up">
+          <span class="section-label">The Challenge</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            Sports Media Is Entering an AI-First Era
+          </h2>
+          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
+            Yet production remains largely manual, fragmented, and unable to scale.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-animate="stagger">
+          <!-- Card 1 -->
+          <div class="card flex gap-5">
+            <div class="flex-shrink-0">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-accent mb-2">90%</div>
+              <p class="text-text-secondary">of games never receive professional commentary, limiting audience reach and engagement.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card flex gap-5">
+            <div class="flex-shrink-0">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-accent mb-2">1 Language</div>
+              <p class="text-text-secondary">Most broadcasts serve a single language audience, missing global fan communities.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card flex gap-5">
+            <div class="flex-shrink-0">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-accent mb-2">Hours</div>
+              <p class="text-text-secondary">Traditional highlight production takes hours of manual editing, delaying content distribution.</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card flex gap-5">
+            <div class="flex-shrink-0">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-accent mb-2">Unmeasured</div>
+              <p class="text-text-secondary">Sponsorship ROI remains difficult to quantify, leaving revenue potential untapped.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center text-text-muted italic mt-12 max-w-xl mx-auto" data-animate="fade-up">
+          The industry lacks a structured, scalable game intelligence layer.
+        </p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         AI COMMENTARY SECTION
+         ================================================================== -->
+    <section id="commentary" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-animate="fade-up">
+          <span class="section-label">AI Commentary</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            Six Voices. One Moment.<br />Infinite Possibilities.
+          </h2>
+          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
+            Generate culturally tailored, multi-persona commentary in real time. One play, multiple narratives — each crafted for a different audience.
+          </p>
+        </div>
+
+        <!-- Two-column layout: Match Moment + Persona Selector -->
+        <div class="flex flex-col lg:flex-row gap-8 mb-8">
+          <!-- Match Moment Card -->
+          <div class="lg:w-[40%]" data-animate="fade-left">
+            <div class="bg-surface border border-border rounded-2xl p-6 border-l-[3px] border-l-accent">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-dot"></span>
+                <span class="text-accent font-bold text-sm">LIVE MATCH</span>
+              </div>
+              <div class="text-text-primary font-bold text-xl mb-2">90+3' | GOAL</div>
+              <p class="text-text-secondary leading-relaxed mb-4">
+                Deep run from the halfway line, beating two defenders, curling finish into the far corner. The stadium erupts in stoppage time.
+              </p>
+              <div class="border-t border-border pt-4">
+                <span class="text-text-muted text-sm italic">"Traditional commentary: And that's a goal in added time. What a strike."</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Persona Tabs -->
+          <div class="lg:w-[60%]" data-animate="fade-right">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+
+              <!-- Professional -->
+              <button class="persona-tab relative bg-surface border border-border rounded-xl p-4 text-left transition-all duration-200 hover:border-primary/50">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                  <span class="text-text-primary font-semibold text-sm">Professional</span>
+                </div>
+                <span class="text-text-muted text-xs">Formal & Analytical</span>
+                <div class="persona-progress"></div>
+              </button>
+
+              <!-- Gen-Z -->
+              <button class="persona-tab relative bg-surface border border-border rounded-xl p-4 text-left transition-all duration-200 hover:border-primary/50">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                  <span class="text-text-primary font-semibold text-sm">Hype Gen-Z</span>
+                </div>
+                <span class="text-text-muted text-xs">High Energy & Street</span>
+                <div class="persona-progress"></div>
+              </button>
+
+              <!-- K-Pop -->
+              <button class="persona-tab relative bg-surface border border-border rounded-xl p-4 text-left transition-all duration-200 hover:border-primary/50">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-text-primary font-semibold text-sm">K-Pop Energy</span>
+                </div>
+                <span class="text-text-muted text-xs">Fan Culture & Drama</span>
+                <div class="persona-progress"></div>
+              </button>
+
+              <!-- LaLiga -->
+              <button class="persona-tab relative bg-surface border border-border rounded-xl p-4 text-left transition-all duration-200 hover:border-primary/50">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                  <span class="text-text-primary font-semibold text-sm">LaLiga Passion</span>
+                </div>
+                <span class="text-text-muted text-xs">Passionate & Theatrical</span>
+                <div class="persona-progress"></div>
+              </button>
+
+              <!-- Tactical -->
+              <button class="persona-tab relative bg-surface border border-border rounded-xl p-4 text-left transition-all duration-200 hover:border-primary/50">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+                  <span class="text-text-primary font-semibold text-sm">Tactical Expert</span>
+                </div>
+                <span class="text-text-muted text-xs">Data-Driven & Precise</span>
+                <div class="persona-progress"></div>
+              </button>
+
+              <!-- Casual -->
+              <button class="persona-tab relative bg-surface border border-border rounded-xl p-4 text-left transition-all duration-200 hover:border-primary/50">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+                  <span class="text-text-primary font-semibold text-sm">Casual Fan</span>
+                </div>
+                <span class="text-text-muted text-xs">Friendly & Relatable</span>
+                <div class="persona-progress"></div>
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Commentary Output -->
+        <div class="bg-surface/50 border border-border rounded-2xl p-6 md:p-8 mb-8" data-animate="fade-up">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="section-label text-xs">AI Generated Commentary</span>
+          </div>
+          <p class="text-text-primary text-lg md:text-xl leading-relaxed min-h-[80px] transition-all duration-150">
+            <span id="commentary-output"></span><span id="commentary-cursor" class="typing-cursor"></span>
+          </p>
+        </div>
+
+        <!-- Parameter Visualization -->
+        <div class="grid grid-cols-3 gap-6 mb-12" data-animate="fade-up">
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-muted">Energy</span>
+              <span id="val-energy" class="text-accent font-semibold">45</span>
+            </div>
+            <div class="h-2 bg-border rounded-full overflow-hidden">
+              <div id="bar-energy" class="param-bar-fill" style="width: 45%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-muted">Slang</span>
+              <span id="val-slang" class="text-accent font-semibold">5</span>
+            </div>
+            <div class="h-2 bg-border rounded-full overflow-hidden">
+              <div id="bar-slang" class="param-bar-fill" style="width: 5%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-text-muted">Cultural Ref.</span>
+              <span id="val-culture" class="text-accent font-semibold">60</span>
+            </div>
+            <div class="h-2 bg-border rounded-full overflow-hidden">
+              <div id="bar-culture" class="param-bar-fill" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Language Marquee -->
+        <div class="marquee-container" data-animate="fade-up">
+          <div class="marquee-track animate-marquee">
+            <span class="text-text-muted text-sm whitespace-nowrap">English</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">中文</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Español</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">العربية</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">हिन्दी</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Português</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">日本語</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">한국어</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Français</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Deutsch</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Italiano</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Bahasa</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">ภาษาไทย</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Türkçe</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Русский</span>
+            <span class="text-border">·</span>
+            <!-- Duplicate for seamless scroll -->
+            <span class="text-text-muted text-sm whitespace-nowrap">English</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">中文</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Español</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">العربية</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">हिन्दी</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Português</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">日本語</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">한국어</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Français</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Deutsch</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Italiano</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Bahasa</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">ภาษาไทย</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Türkçe</span>
+            <span class="text-border">·</span>
+            <span class="text-text-muted text-sm whitespace-nowrap">Русский</span>
+            <span class="text-border">·</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         AI EDITING SECTION
+         ================================================================== -->
+    <section id="editing" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <div class="text-center mb-16" data-animate="fade-up">
+          <span class="section-label">AI Editing</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            Making Sports Footage<br />Intelligent by Design
+          </h2>
+          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
+            AI-driven commentary enables instant automated clipping to generate highlights and multi-format media assets.
+          </p>
+        </div>
+
+        <!-- 3 Feature Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-animate="stagger">
+          <!-- Context-Aware Clipping -->
+          <div class="card">
+            <div class="mb-4">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
+              </svg>
+            </div>
+            <h3 class="text-text-primary font-bold text-xl mb-3">Context-Aware Clipping</h3>
+            <p class="text-text-secondary leading-relaxed">Adaptive pre/post buffers depending on play type. Headers get tight cuts; slow buildups get full narrative context.</p>
+          </div>
+
+          <!-- Multi-Format Output -->
+          <div class="card">
+            <div class="mb-4">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
+              </svg>
+            </div>
+            <h3 class="text-text-primary font-bold text-xl mb-3">Multi-Format Output</h3>
+            <p class="text-text-secondary leading-relaxed">Automatically generates 16:9 broadcast, 9:16 Reels/Shorts, 1:1 social, and 4:5 Stories — each with native captions.</p>
+          </div>
+
+          <!-- Beat-Sync Editing -->
+          <div class="card">
+            <div class="mb-4">
+              <svg class="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <h3 class="text-text-primary font-bold text-xl mb-3">Beat-Sync Editing</h3>
+            <p class="text-text-secondary leading-relaxed">Automated beat-matching synchronizes visual transitions with audio peaks for broadcast-quality highlight reels.</p>
+          </div>
+        </div>
+
+        <!-- Feature Strip -->
+        <svg class="hidden"><symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></symbol></svg>
+        <div class="flex flex-wrap justify-center gap-8 mb-16 text-text-muted text-sm" data-animate="fade-up">
+          <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Auto Celebrations</span></div>
+          <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Tactical Sequences</span></div>
+          <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Multi-Angle Support</span></div>
+          <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Social Formatting</span></div>
+          <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Brand Overlays</span></div>
+          <div class="flex items-center gap-2"><svg class="w-4 h-4 text-accent"><use href="#icon-check"/></svg><span>Music Licensing</span></div>
+        </div>
+
+        <!-- Workflow Diagram -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0" data-animate="fade-up">
+          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
+            <div class="text-accent text-sm font-semibold">Live Feed</div>
+            <div class="text-text-muted text-xs mt-1">Raw broadcast</div>
+          </div>
+          <svg class="hidden md:block w-12 h-6 text-accent" viewBox="0 0 48 24"><path class="workflow-arrow" d="M0 12 H40 M34 6 L40 12 L34 18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <div class="md:hidden text-accent text-2xl">↓</div>
+          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
+            <div class="text-accent text-sm font-semibold">AI Engine</div>
+            <div class="text-text-muted text-xs mt-1">Event detection</div>
+          </div>
+          <svg class="hidden md:block w-12 h-6 text-accent" viewBox="0 0 48 24"><path class="workflow-arrow" d="M0 12 H40 M34 6 L40 12 L34 18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <div class="md:hidden text-accent text-2xl">↓</div>
+          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
+            <div class="text-accent text-sm font-semibold">Auto Edit</div>
+            <div class="text-text-muted text-xs mt-1">Context-aware cuts</div>
+          </div>
+          <svg class="hidden md:block w-12 h-6 text-accent" viewBox="0 0 48 24"><path class="workflow-arrow" d="M0 12 H40 M34 6 L40 12 L34 18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <div class="md:hidden text-accent text-2xl">↓</div>
+          <div class="bg-surface border border-border rounded-xl p-4 text-center min-w-[140px]">
+            <div class="text-accent text-sm font-semibold">Distribution</div>
+            <div class="text-text-muted text-xs mt-1">Multi-platform</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         PLATFORM ARCHITECTURE SECTION
+         ================================================================== -->
+    <section id="platform" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <div class="text-center mb-16" data-animate="fade-up">
+          <span class="section-label">Architecture</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            A Unified Game Intelligence Architecture
+          </h2>
+          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
+            We build AI systems that understand sports matches as structured, dynamic environments — not just video streams.
+          </p>
+        </div>
+
+        <!-- Three-Layer Diagram -->
+        <div class="max-w-3xl mx-auto space-y-6">
+          <!-- Layer 1: Game Understanding -->
+          <div class="arch-layer border-l-primary bg-surface border border-border rounded-xl p-6" data-animate="arch-layer">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-primary font-bold text-sm uppercase tracking-wider">Layer 1</span>
+              <span class="text-text-primary font-bold text-lg">Game Understanding Engine</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Event Detection</span><br />
+                Real-time structured sports event recognition
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">World State</span><br />
+                Persistent match state modeling
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Match Memory</span><br />
+                Context-aware situation tracking
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Media Generation -->
+          <div class="arch-layer border-l-accent bg-surface border border-border rounded-xl p-6" data-animate="arch-layer">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-accent font-bold text-sm uppercase tracking-wider">Layer 2</span>
+              <span class="text-text-primary font-bold text-lg">Media Generation Engine</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">AI Commentary</span><br />
+                Multi-persona real-time generation
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Auto Highlights</span><br />
+                Context-aware intelligent clipping
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Multi-Format</span><br />
+                Broadcast, social, short-form output
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Voice Synthesis</span><br />
+                Multi-language TTS with persona styling
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3: Human-in-the-Loop -->
+          <div class="arch-layer border-l-white bg-surface border border-border rounded-xl p-6" data-animate="arch-layer">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-text-primary font-bold text-sm uppercase tracking-wider">Layer 3</span>
+              <span class="text-text-primary font-bold text-lg">Human-in-the-Loop Interface</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Editable Timelines</span><br />
+                Commentary and clip editing
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">State-Aware</span><br />
+                Event-driven revision capability
+              </div>
+              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
+                <span class="text-text-primary font-semibold">Control Panel</span><br />
+                Deployment-ready operator interface
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Platform breadth note -->
+        <p class="text-center text-text-muted italic mt-12 max-w-xl mx-auto text-sm" data-animate="fade-up">
+          Our platform also extends into AI Sports Marketing and AI Training Analytics, enabling end-to-end sports intelligence.
+        </p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         GLOBAL REACH SECTION
+         ================================================================== -->
+    <section id="global" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <div class="text-center mb-16" data-animate="fade-up">
+          <span class="section-label">Global Reach</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            Built for Global Scale
+          </h2>
+          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
+            Multi-language, multi-platform, and compliance-ready from day one.
+          </p>
+        </div>
+
+        <!-- Metrics -->
+        <div class="grid grid-cols-3 gap-8 mb-16 text-center" data-animate="stagger">
+          <div>
+            <div class="text-4xl md:text-5xl font-extrabold text-accent" data-count="50" data-suffix="+">0</div>
+            <div class="text-text-muted mt-2">Languages Supported</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-extrabold text-accent" data-count="10" data-suffix="+">0</div>
+            <div class="text-text-muted mt-2">Platform Integrations</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-extrabold text-accent" data-count="6" data-suffix="">0</div>
+            <div class="text-text-muted mt-2">Compliance Regions</div>
+          </div>
+        </div>
+
+        <!-- Platform Icons -->
+        <div class="flex flex-wrap items-center justify-center gap-8 mb-12" data-animate="fade-up">
+          <div class="flex items-center gap-2 text-text-muted">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            <span class="text-sm">YouTube</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-muted">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61.01 3.91.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            <span class="text-sm">TikTok</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-muted">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span class="text-sm">Instagram</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-muted">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span class="text-sm">X / Twitter</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-muted">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span class="text-sm">Facebook</span>
+          </div>
+        </div>
+
+        <!-- SVG World Map with dots -->
+        <div class="relative max-w-4xl mx-auto mb-12" data-animate="fade-up">
+          <svg viewBox="0 0 800 400" class="w-full h-auto opacity-20">
+            <!-- Simplified world map continent outlines -->
+            <!-- North America -->
+            <path d="M120 80 L180 60 L220 80 L240 120 L220 160 L200 180 L160 200 L120 180 L100 140 L110 100 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+            <!-- South America -->
+            <path d="M180 220 L200 200 L220 220 L230 260 L220 300 L200 340 L180 320 L170 280 L175 240 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+            <!-- Europe -->
+            <path d="M360 60 L400 50 L420 70 L430 100 L420 120 L400 130 L380 120 L360 100 L355 80 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+            <!-- Africa -->
+            <path d="M380 140 L420 130 L440 160 L450 200 L440 260 L420 300 L400 310 L380 280 L370 220 L375 170 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+            <!-- Asia -->
+            <path d="M450 50 L520 40 L580 50 L640 80 L660 120 L650 160 L620 180 L560 190 L500 170 L460 140 L440 100 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+            <!-- Australia -->
+            <path d="M600 260 L650 250 L680 270 L680 300 L660 320 L620 310 L600 290 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+          </svg>
+          <!-- Glowing dots at key regions -->
+          <div class="map-dot large" style="top: 20%; left: 20%;"></div>  <!-- North America -->
+          <div class="map-dot" style="top: 60%; left: 25%;"></div>  <!-- South America -->
+          <div class="map-dot large" style="top: 18%; left: 50%;"></div>  <!-- Europe -->
+          <div class="map-dot" style="top: 50%; left: 52%;"></div>  <!-- Africa -->
+          <div class="map-dot large" style="top: 22%; left: 72%;"></div>  <!-- East Asia -->
+          <div class="map-dot" style="top: 35%; left: 62%;"></div>  <!-- South Asia -->
+          <div class="map-dot" style="top: 30%; left: 55%;"></div>  <!-- Middle East -->
+          <div class="map-dot" style="top: 70%; left: 82%;"></div>  <!-- Oceania -->
+        </div>
+
+        <!-- Compliance Region Tags -->
+        <div class="flex flex-wrap justify-center gap-3" data-animate="fade-up">
+          <span class="bg-surface border border-border rounded-full px-4 py-1.5 text-text-muted text-sm">GDPR (EU)</span>
+          <span class="bg-surface border border-border rounded-full px-4 py-1.5 text-text-muted text-sm">PDPA (SEA)</span>
+          <span class="bg-surface border border-border rounded-full px-4 py-1.5 text-text-muted text-sm">PIPL (China)</span>
+          <span class="bg-surface border border-border rounded-full px-4 py-1.5 text-text-muted text-sm">CCPA (US)</span>
+          <span class="bg-surface border border-border rounded-full px-4 py-1.5 text-text-muted text-sm">LGPD (Brazil)</span>
+          <span class="bg-surface border border-border rounded-full px-4 py-1.5 text-text-muted text-sm">POPIA (SA)</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         TRUSTED BY SECTION
+         ================================================================== -->
+    <section id="trusted" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <div class="text-center mb-16" data-animate="fade-up">
+          <span class="section-label">Trusted By</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            Proven in Real Events
+          </h2>
+          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
+            Currently in pilot deployment with selected partners across major sports events.
+          </p>
+        </div>
+
+        <!-- Case Study Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-animate="stagger">
+          <!-- Saudi Super Cup -->
+          <div class="card gradient-top-border">
+            <h3 class="text-text-primary font-bold text-xl mb-2">Saudi Super Cup 2024</h3>
+            <span class="text-accent text-xs font-semibold uppercase tracking-wider">International Event</span>
+            <p class="text-text-secondary mt-4 leading-relaxed">Provided AI commentary and automated highlight generation for Saudi Super Cup matches, covering multiple languages for regional broadcasting partners.</p>
+          </div>
+
+          <!-- Asian Games -->
+          <div class="card gradient-top-border">
+            <h3 class="text-text-primary font-bold text-xl mb-2">19th Asian Games</h3>
+            <span class="text-accent text-xs font-semibold uppercase tracking-wider">Multi-Sport Event</span>
+            <p class="text-text-secondary mt-4 leading-relaxed">Delivered comprehensive coverage across multiple sports disciplines, demonstrating the platform's versatility and scalability for large-scale multi-sport events.</p>
+          </div>
+
+          <!-- National Games -->
+          <div class="card gradient-top-border">
+            <h3 class="text-text-primary font-bold text-xl mb-2">15th National Games</h3>
+            <span class="text-accent text-xs font-semibold uppercase tracking-wider">National Scale</span>
+            <p class="text-text-secondary mt-4 leading-relaxed">Powered AI-driven content production at national scale, processing concurrent events and generating real-time highlights for digital distribution channels.</p>
+          </div>
+        </div>
+
+        <!-- Metrics Banner -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-surface border border-border rounded-2xl p-8 text-center" data-animate="fade-up">
+          <div>
+            <div class="text-2xl md:text-3xl font-extrabold text-accent" data-count="1000" data-suffix="+">0</div>
+            <div class="text-text-muted text-sm mt-1">Hours Processed</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-extrabold text-accent" data-count="500" data-suffix="+">0</div>
+            <div class="text-text-muted text-sm mt-1">Matches Covered</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-extrabold text-accent" data-count="70" data-suffix="%">0</div>
+            <div class="text-text-muted text-sm mt-1">Cost Reduction</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-extrabold text-accent" data-count="10" data-suffix="x">0</div>
+            <div class="text-text-muted text-sm mt-1">Faster Turnaround</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         ABOUT SECTION
+         ================================================================== -->
+    <section id="about" class="py-24 md:py-32">
+      <div class="max-w-[var(--container-max)] mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto" data-animate="fade-up">
+          <span class="section-label">About KNQ</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
+            Building the Intelligence Layer for Modern Sports
+          </h2>
+          <p class="text-text-secondary text-lg mt-6 leading-relaxed">
+            KNQ is an AI sports technology company building foundational infrastructure for the next generation of sports media.
+            Our multimodal AI engine understands games as structured, dynamic environments — enabling real-time commentary,
+            intelligent highlight generation, and scalable content production that was previously impossible.
+          </p>
+          <p class="text-text-secondary text-lg mt-6 leading-relaxed">
+            Founded by a team with deep expertise from
+            <span class="text-text-primary font-semibold">Tsinghua University</span>,
+            <span class="text-text-primary font-semibold">Peking University</span>,
+            <span class="text-text-primary font-semibold">CMU</span>, and
+            <span class="text-text-primary font-semibold">NUS</span>,
+            combining world-class AI research with sports industry experience.
+            We work with leagues, broadcasters, and technology partners to deliver solutions that reduce production costs,
+            expand global reach, and unlock new commercial opportunities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================================================================
+         CTA SECTION
+         ================================================================== -->
+    <section class="py-24 md:py-32 relative overflow-hidden">
+      <!-- Background gradient -->
+      <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+
+      <div class="max-w-[var(--container-max)] mx-auto px-6 text-center relative z-10" data-animate="fade-up">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-primary">
+          Interested in Reshaping Sports Media?
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 max-w-xl mx-auto">
+          We welcome conversations initiated through board members, industry operators, and ecosystem partners.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <a href="#" data-modal="contact" data-prefill="I'd like to connect with the leadership team." class="btn-primary text-lg !py-4 !px-8">Contact Leadership Team</a>
+          <a href="#" data-modal="contact" data-prefill="I'd like to request a private demonstration." class="btn-outline text-lg !py-4 !px-8">Request Private Demo</a>
+        </div>
+        <p class="text-text-muted text-sm mt-8 italic">Private deployment access available upon request or referral.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer class="border-t border-border py-8">
+    <div class="max-w-[var(--container-max)] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <svg class="h-6 w-auto" viewBox="200 330 1300 680" fill="none" aria-hidden="true"><path fill="#FFF" d="M1249.63 833.571L1392.98 756.882C1411.67 746.881 1434.21 760.761 1433.68 781.956L1429.74 942.288C1429.22 963.483 1406.03 976.239 1387.85 965.331L1248.45 881.687C1230.02 870.632 1230.68 843.707 1249.63 833.571Z"/><path fill="#FFF" fill-rule="evenodd" d="M647.973 956.617V960.212H464.966L390.27 727.225H380.31V960.212H215.009V342.001H380.31V600.845H390.27L479.905 342.001H664.849L787.406 638.731H795.429V342.001H947.727V578.617a269 269 0 01-21.683.721c-21.046 0-41.61-2.028-61.498-5.896a271 271 0 00-7.033 22.254c22.131 4.469 45.052 6.817 68.531 6.817 7.285 0 14.514-.226 21.683-.671V960.212H784.363L655.996 672.469H647.973V956.617Z"/><path fill="#FFF" fill-rule="evenodd" d="M1240.5 392.657C1191.14 515.539 1068.95 602.509 926.041 602.509c-23.478 0-46.397-2.347-68.525-6.816-23.466 86.147-6.959 181.863 53.227 258.031l2.651 3.354c21.651 27.402 47.216 50.071 75.312 67.836 4.683-178.841 154.083-322.408 337.704-322.408 42.48 0 83.13 7.685 120.58 21.714-8.48-45.079-27.8-88.936-58.45-127.722l-2.65-3.355c-38.63-48.88-89.71-82.708-145.39-100.486z"/></svg>
+        <span class="text-text-secondary text-sm">KNQ Technology</span>
+      </div>
+      <div class="flex items-center gap-6 text-text-muted text-sm">
+        <a href="#" class="hover:text-text-primary transition-colors">Privacy</a>
+        <a href="#" class="hover:text-text-primary transition-colors">Terms</a>
+      </div>
+      <div class="text-text-muted text-sm">
+        &copy; 2026 KNQ Technology. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================
+       CONTACT MODAL
+       ==================================================================== -->
+  <div id="contact-modal" class="hidden fixed inset-0 z-[2000]">
+    <!-- Overlay -->
+    <div id="modal-overlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-200 opacity-0">
+    </div>
+
+    <!-- Modal Card -->
+    <div class="flex items-center justify-center min-h-full p-4">
+      <div id="modal-card" class="relative bg-surface border border-border rounded-2xl w-full max-w-lg p-8 transition-all duration-300 opacity-0 scale-95">
+        <!-- Close Button -->
+        <button id="modal-close" class="absolute top-4 right-4 text-text-muted hover:text-text-primary transition-colors" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <h3 class="text-2xl font-bold text-text-primary mb-2">Get in Touch</h3>
+        <p class="text-text-secondary text-sm mb-6">We'd love to hear from you. Fill in the form below and we'll respond within 24 hours.</p>
+
+        <!-- Form -->
+        <form id="contact-form" action="https://formspree.io/f/PLACEHOLDER" method="POST" class="space-y-4">
+          <div>
+            <label class="block text-text-secondary text-sm mb-1" for="contact-name">Full Name *</label>
+            <input type="text" id="contact-name" name="name" required class="form-input" placeholder="Your full name" />
+          </div>
+          <div>
+            <label class="block text-text-secondary text-sm mb-1" for="contact-company">Company *</label>
+            <input type="text" id="contact-company" name="company" required class="form-input" placeholder="Company name" />
+          </div>
+          <div>
+            <label class="block text-text-secondary text-sm mb-1" for="contact-email">Email *</label>
+            <input type="email" id="contact-email" name="email" required class="form-input" placeholder="you@company.com" />
+          </div>
+          <div>
+            <label class="block text-text-secondary text-sm mb-1" for="contact-role">Role</label>
+            <input type="text" id="contact-role" name="role" class="form-input" placeholder="Your role (optional)" />
+          </div>
+          <div>
+            <label class="block text-text-secondary text-sm mb-1" for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="3" class="form-input resize-none" placeholder="Tell us about your needs..."></textarea>
+          </div>
+          <div class="form-error hidden text-red-400 text-sm"></div>
+          <button type="submit" class="btn-primary w-full !py-3">Send Message</button>
+        </form>
+
+        <!-- Thank You State -->
+        <div id="modal-thank-you" class="hidden text-center py-8">
+          <div class="text-4xl mb-4">&#10003;</div>
+          <h4 class="text-xl font-bold text-text-primary mb-2">Thank You</h4>
+          <p class="text-text-secondary">We've received your message and will be in touch shortly.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
