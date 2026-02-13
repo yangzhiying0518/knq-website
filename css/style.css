@@ -320,10 +320,6 @@ body::before {
   background: var(--color-accent);
   border-radius: 1px;
 }
-.cap-link.cap-active {
-  color: var(--color-accent);
-}
-
 /* Form input base style */
 .form-input {
   width: 100%;

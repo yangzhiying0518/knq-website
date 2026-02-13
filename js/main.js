@@ -15,7 +15,6 @@ function initNavigation() {
   const header = document.getElementById('site-header');
   const heroSection = document.getElementById('hero');
   const navLinks = document.querySelectorAll('.nav-link');
-  const capLinks = document.querySelectorAll('.cap-link');
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileClose = document.getElementById('mobile-menu-close');
@@ -42,9 +41,6 @@ function initNavigation() {
           const id = entry.target.id;
           navLinks.forEach((link) => {
             link.classList.toggle('nav-active', link.getAttribute('href') === `#${id}`);
-          });
-          capLinks.forEach((link) => {
-            link.classList.toggle('cap-active', link.getAttribute('href') === `#${id}`);
           });
         }
       });
