@@ -347,34 +347,34 @@
 
           <!-- Parameter Visualization (inside container) -->
           <div class="grid grid-cols-3 gap-6 mt-6" data-animate="fade-up">
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-muted">Energy</span>
-              <span id="val-energy" class="text-accent font-semibold">45</span>
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="text-text-muted">Energy</span>
+                <span id="val-energy" class="text-accent font-semibold">45</span>
+              </div>
+              <div class="h-2 bg-border rounded-full overflow-hidden">
+                <div id="bar-energy" class="param-bar-fill" style="width: 45%"></div>
+              </div>
             </div>
-            <div class="h-2 bg-border rounded-full overflow-hidden">
-              <div id="bar-energy" class="param-bar-fill" style="width: 45%"></div>
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="text-text-muted">Slang</span>
+                <span id="val-slang" class="text-accent font-semibold">5</span>
+              </div>
+              <div class="h-2 bg-border rounded-full overflow-hidden">
+                <div id="bar-slang" class="param-bar-fill" style="width: 5%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="text-text-muted">Cultural Ref.</span>
+                <span id="val-culture" class="text-accent font-semibold">60</span>
+              </div>
+              <div class="h-2 bg-border rounded-full overflow-hidden">
+                <div id="bar-culture" class="param-bar-fill" style="width: 60%"></div>
+              </div>
             </div>
           </div>
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-muted">Slang</span>
-              <span id="val-slang" class="text-accent font-semibold">5</span>
-            </div>
-            <div class="h-2 bg-border rounded-full overflow-hidden">
-              <div id="bar-slang" class="param-bar-fill" style="width: 5%"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-text-muted">Cultural Ref.</span>
-              <span id="val-culture" class="text-accent font-semibold">60</span>
-            </div>
-            <div class="h-2 bg-border rounded-full overflow-hidden">
-              <div id="bar-culture" class="param-bar-fill" style="width: 60%"></div>
-            </div>
-          </div>
-        </div>
 
         </div><!-- End Interactive Demo Container -->
 
@@ -466,7 +466,7 @@
         </div>
 
         <!-- Core Capabilities -->
-        <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 mb-8" data-animate="stagger">
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 mb-6" data-animate="stagger">
           <div class="flex items-center gap-3">
             <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
@@ -519,7 +519,7 @@
 
               <div class="demo-clip opacity-0 translate-y-6">
                 <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
-                  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+                  <video class="absolute inset-0 w-full h-full object-cover" poster="/clips/clip1.jpg" autoplay muted loop playsinline>
                     <source src="/clips/clip1.mp4" type="video/mp4" />
                   </video>
                 </div>
@@ -527,7 +527,7 @@
 
               <div class="demo-clip opacity-0 translate-y-6">
                 <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
-                  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+                  <video class="absolute inset-0 w-full h-full object-cover" poster="/clips/clip2.jpg" autoplay muted loop playsinline>
                     <source src="/clips/clip2.mp4" type="video/mp4" />
                   </video>
                 </div>
@@ -535,7 +535,7 @@
 
               <div class="demo-clip opacity-0 translate-y-6">
                 <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
-                  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+                  <video class="absolute inset-0 w-full h-full object-cover" poster="/clips/clip3.jpg" autoplay muted loop playsinline>
                     <source src="/clips/clip3.mp4" type="video/mp4" />
                   </video>
                 </div>
@@ -543,7 +543,7 @@
 
               <div class="demo-clip opacity-0 translate-y-6">
                 <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface border border-border/40 relative group cursor-pointer hover:border-accent/40 transition-colors">
-                  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+                  <video class="absolute inset-0 w-full h-full object-cover" poster="/clips/clip4.jpg" autoplay muted loop playsinline>
                     <source src="/clips/clip4.mp4" type="video/mp4" />
                   </video>
                 </div>
@@ -558,103 +558,6 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- ==================================================================
-         PLATFORM ARCHITECTURE SECTION
-         ================================================================== -->
-    <section id="platform" class="py-24 md:py-32">
-      <div class="max-w-[var(--container-max)] mx-auto px-6">
-        <div class="text-center mb-16" data-animate="fade-up">
-          <span class="section-label">Architecture</span>
-          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 text-text-primary">
-            A Unified Game Intelligence Architecture
-          </h2>
-          <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto">
-            We build AI systems that understand sports matches as structured, dynamic environments — not just video streams.
-          </p>
-        </div>
-
-        <!-- Three-Layer Diagram -->
-        <div class="max-w-3xl mx-auto space-y-6">
-          <!-- Layer 1: Game Understanding -->
-          <div class="arch-layer border-l-primary bg-surface border border-border rounded-xl p-6" data-animate="arch-layer">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-primary font-bold text-sm uppercase tracking-wider">Layer 1</span>
-              <span class="text-text-primary font-bold text-lg">Game Understanding Engine</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Event Detection</span><br />
-                Real-time structured sports event recognition
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">World State</span><br />
-                Persistent match state modeling
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Match Memory</span><br />
-                Context-aware situation tracking
-              </div>
-            </div>
-          </div>
-
-          <!-- Layer 2: Media Generation -->
-          <div class="arch-layer border-l-accent bg-surface border border-border rounded-xl p-6" data-animate="arch-layer">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-accent font-bold text-sm uppercase tracking-wider">Layer 2</span>
-              <span class="text-text-primary font-bold text-lg">Media Generation Engine</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">AI Commentary</span><br />
-                Multi-persona real-time generation
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Auto Highlights</span><br />
-                Context-aware intelligent clipping
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Multi-Format</span><br />
-                Broadcast, social, short-form output
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Voice Synthesis</span><br />
-                Multi-language TTS with persona styling
-              </div>
-            </div>
-          </div>
-
-          <!-- Layer 3: Human-in-the-Loop -->
-          <div class="arch-layer border-l-white bg-surface border border-border rounded-xl p-6" data-animate="arch-layer">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-text-primary font-bold text-sm uppercase tracking-wider">Layer 3</span>
-              <span class="text-text-primary font-bold text-lg">Human-in-the-Loop Interface</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Editable Timelines</span><br />
-                Commentary and clip editing
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">State-Aware</span><br />
-                Event-driven revision capability
-              </div>
-              <div class="text-text-secondary text-sm bg-bg/50 rounded-lg p-3">
-                <span class="text-text-primary font-semibold">Control Panel</span><br />
-                Deployment-ready operator interface
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Platform breadth note -->
-        <p class="text-center text-text-muted italic mt-12 max-w-xl mx-auto text-sm" data-animate="fade-up">
-          Our platform also extends into AI Sports Marketing and AI Training Analytics, enabling end-to-end sports intelligence.
-        </p>
       </div>
     </section>
 

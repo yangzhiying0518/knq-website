@@ -296,12 +296,6 @@ body::before {
   100% { transform: scale(3.5); opacity: 0; }
 }
 
-/* Architecture layer */
-.arch-layer {
-  border-left: 4px solid;
-  transition: opacity 600ms ease, transform 600ms ease;
-}
-
 /* Navigation scroll state */
 .nav-scrolled {
   background: rgba(9,9,11,0.95);

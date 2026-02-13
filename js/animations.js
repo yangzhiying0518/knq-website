@@ -70,23 +70,6 @@ export function initAnimations(gsap, ScrollTrigger) {
     });
   });
 
-  // Architecture layers build up
-  const archLayers = document.querySelectorAll('[data-animate="arch-layer"]');
-  archLayers.forEach((layer, i) => {
-    gsap.from(layer, {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      delay: i * 0.3,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: layer.parentElement,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-    });
-  });
-
   // Hero animations (not scroll-triggered, plays on load)
   const heroTimeline = gsap.timeline({ delay: 0.2 });
 
