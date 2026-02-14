@@ -41,7 +41,7 @@ const MAP_DATA = {
 
 // Key business locations: [col, row, label, isLarge]
 const HIGHLIGHTS = [
-  [21, 10, 'North America', true],
+  [13, 9, 'North America', true],
   [27, 22, 'South America', false],
   [36, 8, 'Europe', true],
   [46, 13, 'Middle East', true],
